@@ -197,3 +197,34 @@ def test_optimal_tree_beats_every_valid_tree(size):
     t = optimal_tree(acc, size)
     assert len(t.choices) == size
     assert expected_tokens(t, acc) == pytest.approx(best)
+
+
+class _StubTok:
+    """Just enough tokenizer for ``train.distill``: a prompt is its own list of ids."""
+
+    padding_side = "right"
+    pad_token_id = V - 1
+    eos_token_id = V - 2
+
+    def apply_chat_template(self, msgs, tokenize, add_generation_prompt):
+        return msgs[0]["content"]
+
+    def __call__(self, text, add_special_tokens):
+        return type("Enc", (), {"input_ids": [int(t) for t in text.split()]})()
+
+
+def test_distillation_is_pure_greedy_even_if_the_model_defaults_to_a_penalty(dec):
+    """Qwen2.5-Instruct's generation_config sets a repetition penalty; distilled replies
+    must ignore it, or the heads learn tokens the base model would not choose greedily."""
+    from medusa.train import distill
+
+    dec.hf.generation_config.repetition_penalty = 1.5
+    try:
+        tok = _StubTok()
+        prompts = ["3 9 4 1 7", "5 5 2", "8 1 1 1 6 2"]
+        out = distill(dec.hf, tok, prompts, 25, 3, lambda s: None)
+        for ids, reply in out:
+            ref = greedy(dec, torch.tensor([ids]), 25, eos=tok.eos_token_id).tokens
+            assert reply == [t for t in ref if t != tok.pad_token_id]
+    finally:
+        dec.hf.generation_config.repetition_penalty = 1.0

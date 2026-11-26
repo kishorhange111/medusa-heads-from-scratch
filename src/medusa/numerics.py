@@ -57,7 +57,7 @@ def run(name, dtype, tok, prompts, max_new, eos, log):
         x = torch.tensor([ids], device=DEV)
         g = hf.generate(
             x, do_sample=False, max_new_tokens=max_new, eos_token_id=eos, temperature=None,
-            top_p=None, top_k=None, pad_token_id=tok.pad_token_id,
+            top_p=None, top_k=None, repetition_penalty=1.0, pad_token_id=tok.pad_token_id,
         )[0, len(ids) :].tolist()  # fmt: skip
         mine = greedy(dec, x, max_new, eos).tokens
         if g == mine:
@@ -70,8 +70,12 @@ def run(name, dtype, tok, prompts, max_new, eos, log):
             c, n = teacher_forced(hf, ids, rep)
             tf[key][0] += c
             tf[key][1] += n
+    gc = hf.generation_config
     out = {
         "dtype": str(dtype).replace("torch.", ""),
+        "default_generation_config": {
+            k: getattr(gc, k, None) for k in ("repetition_penalty", "temperature", "top_p", "top_k")
+        },
         "hf_vs_mine_identical": same,
         "n": len(prompts),
         "margins_at_first_divergence": sorted(round(m, 4) for m in margins),
