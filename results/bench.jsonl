@@ -1,0 +1,11 @@
+{"config": "greedy", "tokens_per_step": 1.010443864229765, "tok_s": 33.10391073380093, "identical": 20, "n": 20, "tokens": 1935}
+{"config": "HF generate (greedy)", "tokens_per_step": 1.0, "tok_s": 34.457221020391096, "identical": 20, "n": 20, "tokens": 1935}
+{"config": "chain-1", "nodes": 2, "predicted": 1.3063100576400757, "tokens_per_step": 1.303030303030303, "tok_s": 35.91457593432157, "identical": 17, "n": 20, "tokens": 1935}
+{"config": "chain-2", "nodes": 3, "predicted": 1.3536971443704662, "tokens_per_step": 1.3636363636363635, "tok_s": 36.38875110929159, "identical": 18, "n": 20, "tokens": 1935}
+{"config": "chain-3", "nodes": 4, "predicted": 1.3585461116894697, "tokens_per_step": 1.3811563169164882, "tok_s": 37.63110344599686, "identical": 18, "n": 20, "tokens": 1935}
+{"config": "chain-4", "nodes": 5, "predicted": 1.3589062516939843, "tokens_per_step": 1.3811563169164882, "tok_s": 37.42999884278456, "identical": 18, "n": 20, "tokens": 1935}
+{"config": "tree-4", "nodes": 5, "predicted": 1.5294756144285202, "tokens_per_step": 1.524822695035461, "tok_s": 41.477323819675796, "identical": 17, "n": 20, "tokens": 1935}
+{"config": "tree-8", "nodes": 9, "predicted": 1.6600554842209299, "tokens_per_step": 1.7033450704225352, "tok_s": 44.82992548943711, "identical": 18, "n": 20, "tokens": 1935}
+{"config": "tree-16", "nodes": 17, "predicted": 1.7829350442035423, "tokens_per_step": 1.8134957825679474, "tok_s": 47.44243323750026, "identical": 17, "n": 20, "tokens": 1935}
+{"config": "tree-32", "nodes": 33, "predicted": 1.8724330445097506, "tokens_per_step": 1.9158415841584158, "tok_s": 48.81816940143886, "identical": 18, "n": 20, "tokens": 1935}
+{"config": "tree-64", "nodes": 65, "predicted": 1.936553309505753, "tokens_per_step": 2.0010718113612005, "tok_s": 50.75408114953975, "identical": 17, "n": 20, "tokens": 1867}
