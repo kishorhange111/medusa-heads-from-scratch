@@ -1,0 +1,30 @@
+[
+ {
+  "dtype": "float16",
+  "default_generation_config": {
+   "repetition_penalty": 1.1,
+   "temperature": 0.7,
+   "top_p": 0.8,
+   "top_k": 20
+  },
+  "hf_vs_mine_identical": 20,
+  "n": 20,
+  "margins_at_first_divergence": [],
+  "teacher_forced_batch1_replies": 0.9984496124031008,
+  "teacher_forced_batched_replies": 0.9979328165374677
+ },
+ {
+  "dtype": "float32",
+  "default_generation_config": {
+   "repetition_penalty": 1.1,
+   "temperature": 0.7,
+   "top_p": 0.8,
+   "top_k": 20
+  },
+  "hf_vs_mine_identical": 20,
+  "n": 20,
+  "margins_at_first_divergence": [],
+  "teacher_forced_batch1_replies": 1.0,
+  "teacher_forced_batched_replies": 1.0
+ }
+]

@@ -78,6 +78,7 @@ def distill(model, tok, prompts, max_new, bs, log, deadline=None):
             temperature=None,
             top_p=None,
             top_k=None,
+            repetition_penalty=1.0,  # Qwen2.5-Instruct defaults to a penalty
             pad_token_id=tok.pad_token_id,
         )
         for r, c in enumerate(chunk):
